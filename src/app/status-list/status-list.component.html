@@ -1,6 +1,6 @@
-<p>status-list works!</p>
-<ol>
-  <li *ngFor="let item of statusData">
-    {{item.statusname}}
-  </li>
-</ol>
+<div class="gridDivFlex">
+  <mat-card *ngFor="let item of statusData" class="gridMatCard">
+      <mat-card-title>{{item.statusname}}</mat-card-title>
+      <mat-card-subtitle>This is test for status {{item.statusname | lowercase}}</mat-card-subtitle>
+  </mat-card>
+</div>

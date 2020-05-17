@@ -10,6 +10,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {  MatButtonModule, MatSliderModule, MatMenuModule, MatCardModule, MatCardTitle } from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSliderModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatCardModule
   ],
   providers: [StatusService],
   bootstrap: [AppComponent]
