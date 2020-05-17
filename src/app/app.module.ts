@@ -10,7 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {  MatButtonModule, MatSliderModule, MatMenuModule, MatCardModule, MatCardTitle } from '@angular/material';
+import {  MatButtonModule, MatSliderModule, MatMenuModule, MatCardModule, MatCardTitle, MatSidenavModule, MatListModule, MatToolbarModule, MatIconModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,11 @@ import {  MatButtonModule, MatSliderModule, MatMenuModule, MatCardModule, MatCar
     MatSliderModule,
     MatButtonModule,
     MatMenuModule,
-    MatCardModule
+    MatCardModule,
+    MatSidenavModule,
+    MatListModule,
+    MatToolbarModule,
+    MatIconModule
   ],
   providers: [StatusService],
   bootstrap: [AppComponent]
