@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from './api.service';
+import { ApiService } from '../api/api.service';
+import { Status } from 'src/app/models/status';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +18,3 @@ export class StatusService {
 
 }
 
-
-export class Status {
-  statusid: number;
-  statusname: string;
-}
