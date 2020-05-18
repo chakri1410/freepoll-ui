@@ -9,13 +9,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import {  MatButtonModule, MatSliderModule, MatMenuModule, MatCardModule, MatSidenavModule, MatListModule, MatToolbarModule, MatIconModule, MatGridListModule, MatProgressSpinnerModule } from '@angular/material';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 
 import { StatusService } from './services/status/status.service';
 import { NavigationMenuService } from './services/navigation-menu/navigation-menu.service';
 import { ApiService } from './services/api/api.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CreatePollComponent } from './create-poll/create-poll.component';
+import { FreePollMaterialModules } from './material.module';
 
 @NgModule({
    declarations: [
@@ -23,25 +24,18 @@ import { DashboardComponent } from './dashboard/dashboard.component';
       StatusListComponent,
       HeaderComponent,
       FooterComponent,
-      DashboardComponent
+      DashboardComponent,
+      CreatePollComponent
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
       HttpClientModule,
       BrowserAnimationsModule,
-      MatSliderModule,
-      MatButtonModule,
-      MatMenuModule,
-      MatCardModule,
-      MatSidenavModule,
-      MatListModule,
-      MatToolbarModule,
-      MatIconModule,
-      MatGridListModule,
-      MatProgressSpinnerModule
+      FreePollMaterialModules
    ],
    providers: [
+      { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
       StatusService,
       NavigationMenuService,
       ApiService
