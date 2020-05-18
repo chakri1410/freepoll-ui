@@ -1,7 +1,7 @@
 <div class="freepoll-container" [class.freepoll-is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" class="freepoll-toolbar">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <h1 class="freepoll-app-name">FreePoll</h1>
+    <h1 class="freepoll-app-name"><button routerLink="." mat-button>FreePoll</button></h1>
   </mat-toolbar>
 
   <mat-sidenav-container class="freepoll-sidenav-container"
@@ -13,7 +13,7 @@
       </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content>
+    <mat-sidenav-content style="padding-left: 20px;padding-top: 20px ;">
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
