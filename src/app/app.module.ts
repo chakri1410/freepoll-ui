@@ -10,7 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {  MatButtonModule, MatSliderModule, MatMenuModule, MatCardModule, MatCardTitle, MatSidenavModule, MatListModule, MatToolbarModule, MatIconModule, MatGridListModule } from '@angular/material';
+import {  MatButtonModule, MatSliderModule, MatMenuModule, MatCardModule, MatSidenavModule, MatListModule, MatToolbarModule, MatIconModule, MatGridListModule, MatProgressSpinnerModule } from '@angular/material';
 
 import { StatusService } from './services/status/status.service';
 import { NavigationMenuService } from './services/navigation-menu/navigation-menu.service';
@@ -39,6 +39,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
       MatToolbarModule,
       MatIconModule,
       MatGridListModule,
+      MatProgressSpinnerModule
    ],
    providers: [
       StatusService,

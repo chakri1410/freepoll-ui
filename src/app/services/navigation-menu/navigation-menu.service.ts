@@ -12,7 +12,7 @@ constructor() {
     {name: 'Dashboard', url: 'dashboard'},
     {name: 'New Poll', url: 'poll/new'},
     {name: 'New Survey', url: 'survey/new'},
-    {name: 'Status', url: 'home'}];
+    {name: 'Status', url: 'status'}];
 }
 
 get() : NavigationModel[] {
