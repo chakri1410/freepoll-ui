@@ -8,15 +8,16 @@
   </p>
 
   <label class="mat-h3">Options</label>
-  <ul style="list-style: none; padding-left:0px">
-    <li *ngFor="let eachOption of OptionsList;let eachIndex = index">
+  <ul class="optionsUL" cdkDropList style="list-style: none; padding-left:0px" (cdkDropListDropped)="drop($event)">
+    <li class="optionsLI" *ngFor="let eachOption of OptionsList;let eachIndex = index" cdkDrag>
       <mat-form-field>
         <input matInput [value]="eachOption" placeholder="Option goes here">
         <mat-error *ngIf="eachOption == ''">Cannot be empty</mat-error>
+        <button matSuffix mat-icon-button color="warn" aria-label="Delete" (click)="removeItem(eachIndex)">
+          <mat-icon>delete</mat-icon>
+        </button>
       </mat-form-field>
-      <button mat-icon-button color="warn" aria-label="Delete" (click)="removeItem(eachIndex)">
-        <mat-icon>delete</mat-icon>
-      </button>
+
     </li>
   </ul>
   <!--<div cdkDropList class="poll-option-list" (cdkDropListDropped)="drop($event)">
