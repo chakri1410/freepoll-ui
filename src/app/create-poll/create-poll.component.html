@@ -1,25 +1,37 @@
 <div class="center-div">
-  <h2 class="mat-h2">Create your poll with question and options to choose</h2>
-  <p>
-    <mat-form-field appearance="fill">
-      <mat-label>What's your question?</mat-label>
-      <textarea matInput></textarea>
-    </mat-form-field>
-  </p>
-
-  <label class="mat-h3">Options</label>
-  <ul style="list-style: none; padding-left:0px">
-    <li *ngFor="let eachOption of OptionsList;let eachIndex = index">
-      <mat-form-field>
-        <input matInput [value]="eachOption" placeholder="Option goes here">
-        <mat-error *ngIf="eachOption == ''">Cannot be empty</mat-error>
+  <form [formGroup]="fg" (ngSubmit)="onSubmit()">
+    <h2 class="mat-h2">Create your poll with question and options to choose</h2>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>What's your question?</mat-label>
+        <textarea matInput formControlName="question"></textarea>
       </mat-form-field>
-      <button mat-icon-button color="warn" aria-label="Delete" (click)="removeItem(eachIndex)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </li>
-  </ul>
-  <!--<div cdkDropList class="poll-option-list" (cdkDropListDropped)="drop($event)">
+    </p>
+
+    <label class="mat-h3">Options</label>
+    <ul class="optionsUL" formArrayName="options" cdkDropList style="list-style: none; padding-left:0px" (cdkDropListDropped)="drop($event)">
+      <li class="optionsLI" *ngFor="let eachOption of options.controls;let eachIndex = index"
+        cdkDrag>
+        <mat-form-field>
+          <input matInput placeholder="Option goes here" [formControl]="options.controls[eachIndex]">
+          <mat-error>Cannot be empty</mat-error>
+          <button matSuffix mat-icon-button color="warn" aria-label="Delete" (click)="removeItem(eachIndex)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-form-field>
+      </li>
+    </ul>
+    <p>
+      <mat-form-field>
+        <input matInput id="newOption" formControlName="newoption" placeholder="Type option and click on plus">
+        <mat-error *ngIf="newoptionvalue == ''">Cannot be empty</mat-error>
+        <button matSuffix type="button" mat-mini-fab color="accent" [disabled]="newoptionvalue == ''" aria-label="Add"
+          (click)="addNewOption()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-form-field>
+    </p>
+    <!--<div cdkDropList class="poll-option-list" (cdkDropListDropped)="drop($event)">
     <div class="poll-option-box" *ngFor="let eachOption of OptionsList" cdkDrag>
       <mat-form-field style="width: 100%;">
         <input matInput [value]="eachOption">
@@ -30,29 +42,27 @@
       </button>
     </div>
   </div>-->
-  <button mat-raised-button (click)="addNewOption()">Add</button>
-  <br/>
-  <p>
-    <br/>
-    <label class="mat-h3">Option type</label>
-    <br/>
-    <mat-button-toggle-group value="radiobutton">
-      <mat-button-toggle value="radiobutton">Radio button</mat-button-toggle>
-      <mat-button-toggle value="checkboxes">Checkboxes</mat-button-toggle>
-    </mat-button-toggle-group>
-  </p>
-  <p>
+    <p>
+      <label class="mat-h3">Option type</label>
+      <br />
+      <mat-button-toggle-group formControlName="optionType" [value]="getOptionType | lowercase">
+        <mat-button-toggle value="rb">Radio button</mat-button-toggle>
+        <mat-button-toggle value="cb">Checkboxes</mat-button-toggle>
+      </mat-button-toggle-group>
+    </p>
+    <p>
 
-    <label class="mat-h3" display="block">IP Duplicate Filter</label>
-    <label class="mat-h4"> ( Based on user IP Address he will not be allowed to vote again)</label>
-    <br/>
-    <mat-button-toggle-group value="No">
-      <mat-button-toggle value="Yes">Yes</mat-button-toggle>
-      <mat-button-toggle value="No">No</mat-button-toggle>
-    </mat-button-toggle-group>
+      <label class="mat-h3" display="block">IP Duplicate Filter</label>
+      <label class="mat-h4">&nbsp;&nbsp; (Based on user IP Address he will not be allowed to vote again)</label>
+      <br />
+      <mat-button-toggle-group  formControlName="duplicateCheck" [value]="getDuplicateCheck | lowercase">
+        <mat-button-toggle value="yes">Yes</mat-button-toggle>
+        <mat-button-toggle value="no">No</mat-button-toggle>
+      </mat-button-toggle-group>
 
-  </p>
-  <p>
-    <button mat-raised-button color="accent">Submit</button>
-  </p>
+    </p>
+    <p>
+      <button type="submit" [disabled]="!fg.valid" mat-raised-button color="accent">Submit</button>
+    </p>
+  </form>
 </div>

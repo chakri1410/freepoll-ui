@@ -17,6 +17,7 @@ import { ApiService } from './services/api/api.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreatePollComponent } from './create-poll/create-poll.component';
 import { FreePollMaterialModules } from './material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
    declarations: [
@@ -29,10 +30,12 @@ import { FreePollMaterialModules } from './material.module';
    ],
    imports: [
       BrowserModule,
+      FormsModule,
+      ReactiveFormsModule,
       AppRoutingModule,
       HttpClientModule,
       BrowserAnimationsModule,
-      FreePollMaterialModules
+      FreePollMaterialModules,
    ],
    providers: [
       { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
