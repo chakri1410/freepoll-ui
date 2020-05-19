@@ -10,8 +10,8 @@
   <label class="mat-h3">Options</label>
   <ul style="list-style: none; padding-left:0px">
     <li *ngFor="let eachOption of OptionsList;let eachIndex = index">
-      <mat-form-field required>
-        <input matInput [value]="eachOption">
+      <mat-form-field>
+        <input matInput [value]="eachOption" placeholder="Option goes here">
         <mat-error *ngIf="eachOption == ''">Cannot be empty</mat-error>
       </mat-form-field>
       <button mat-icon-button color="warn" aria-label="Delete" (click)="removeItem(eachIndex)">
