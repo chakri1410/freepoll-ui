@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-create-poll',
@@ -11,7 +12,7 @@ export class CreatePollComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.OptionsList = ["hello", "test"];
+    this.OptionsList = ["First Option"];
   }
 
   addNewOption() {
@@ -21,6 +22,10 @@ export class CreatePollComponent implements OnInit {
 
   removeItem(removeItem: number) {
     this.OptionsList.splice(removeItem, 1);
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.OptionsList, event.previousIndex, event.currentIndex);
   }
 
 }

@@ -10,13 +10,26 @@
   <label class="mat-h3">Options</label>
   <ul style="list-style: none; padding-left:0px">
     <li *ngFor="let eachOption of OptionsList;let eachIndex = index">
-      <mat-form-field required>
+      <mat-form-field>
+        <input matInput [value]="eachOption" placeholder="Option goes here">
+        <mat-error *ngIf="eachOption == ''">Cannot be empty</mat-error>
+      </mat-form-field>
+      <button mat-icon-button color="warn" aria-label="Delete" (click)="removeItem(eachIndex)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </li>
+  </ul>
+  <!--<div cdkDropList class="poll-option-list" (cdkDropListDropped)="drop($event)">
+    <div class="poll-option-box" *ngFor="let eachOption of OptionsList" cdkDrag>
+      <mat-form-field style="width: 100%;">
         <input matInput [value]="eachOption">
         <mat-error *ngIf="eachOption == ''">Cannot be empty</mat-error>
       </mat-form-field>
-      <button mat-button (click)="removeItem(eachIndex)">X</button>
-    </li>
-  </ul>
+      <button mat-icon-button color="warn" aria-label="Delete">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>-->
   <button mat-raised-button (click)="addNewOption()">Add</button>
   <br/>
   <p>
@@ -31,7 +44,7 @@
   <p>
 
     <label class="mat-h3" display="block">IP Duplicate Filter</label>
-    <label class="mat-h4">Based on user IP Address he will not be allowed to vote again</label>
+    <label class="mat-h4"> ( Based on user IP Address he will not be allowed to vote again)</label>
     <br/>
     <mat-button-toggle-group value="No">
       <mat-button-toggle value="Yes">Yes</mat-button-toggle>
