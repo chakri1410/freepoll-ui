@@ -1,5 +1,7 @@
 # FreepollUi
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8ff72a9a-8728-4de8-867f-150914653292/deploy-status)](https://app.netlify.com/sites/freepoll-ui/deploys)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.26.
 
 ## Development server
