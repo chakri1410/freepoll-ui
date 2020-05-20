@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Status } from 'src/app/models/status';
+import { PollModel } from 'src/app/models/poll';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +17,10 @@ export class ApiService {
 
   getStatus(): Observable<Status[]> {
     return this.http.get<Status[]>(this._API + 'status');
+  }
+
+  addPoll(data: PollModel) : Observable<PollModel>{
+    return this.http.put<PollModel>(this._API + 'poll/add', data);
   }
 
 }

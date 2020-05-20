@@ -9,9 +9,9 @@
     </p>
 
     <label class="mat-h3">Options</label>
-    <ul class="optionsUL" formArrayName="options" cdkDropList style="list-style: none; padding-left:0px" (cdkDropListDropped)="drop($event)">
-      <li class="optionsLI" *ngFor="let eachOption of options.controls;let eachIndex = index"
-        cdkDrag>
+    <ul class="optionsUL" formArrayName="options" cdkDropList style="list-style: none; padding-left:0px"
+      (cdkDropListDropped)="drop($event)">
+      <li class="optionsLI" *ngFor="let eachOption of options.controls;let eachIndex = index" cdkDrag>
         <mat-form-field>
           <input matInput placeholder="Option goes here" [formControl]="options.controls[eachIndex]">
           <mat-error>Cannot be empty</mat-error>
@@ -23,12 +23,26 @@
     </ul>
     <p>
       <mat-form-field>
-        <input matInput id="newOption" formControlName="newoption" placeholder="Type option and click on plus">
+        <input matInput id="newOption" [(ngModel)]="newoptionvalue" [ngModelOptions]="{standalone: true}"
+          placeholder="Type option and click on plus">
         <mat-error *ngIf="newoptionvalue == ''">Cannot be empty</mat-error>
-        <button matSuffix type="button" mat-mini-fab color="accent" [disabled]="newoptionvalue == ''" aria-label="Add"
+        <button matSuffix type="button" mat-mini-fab color="accent" [disabled]="newoptionvalue == '' || newoptionvalue.length < 3" aria-label="Add"
           (click)="addNewOption()">
           <mat-icon>add</mat-icon>
         </button>
+      </mat-form-field>
+    </p>
+    <p>
+      <label class="mat-h3" class="mat-h3">End Date
+        <mat-hint>(Maximum duration is 3 months)</mat-hint>
+      </label>
+
+      <br />
+      <mat-form-field>
+        <mat-label>Choose a date when poll should end</mat-label>
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" formControlName="endDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
       </mat-form-field>
     </p>
     <!--<div cdkDropList class="poll-option-list" (cdkDropListDropped)="drop($event)">
@@ -45,24 +59,27 @@
     <p>
       <label class="mat-h3">Option type</label>
       <br />
-      <mat-button-toggle-group formControlName="optionType" [value]="getOptionType | lowercase">
-        <mat-button-toggle value="rb">Radio button</mat-button-toggle>
-        <mat-button-toggle value="cb">Checkboxes</mat-button-toggle>
+      <mat-button-toggle-group formControlName="optionType" value="optionType">
+        <mat-button-toggle value="0">Radio button</mat-button-toggle>
+        <mat-button-toggle value="1">Checkboxes</mat-button-toggle>
       </mat-button-toggle-group>
     </p>
+
     <p>
 
-      <label class="mat-h3" display="block">IP Duplicate Filter</label>
-      <label class="mat-h4">&nbsp;&nbsp; (Based on user IP Address he will not be allowed to vote again)</label>
+      <label class="mat-h3" display="block">IP Duplicate Filter
+        <mat-hint>(Based on user IP Address he will not be allowed to vote again)</mat-hint>
+      </label>
+
       <br />
-      <mat-button-toggle-group  formControlName="duplicateCheck" [value]="getDuplicateCheck | lowercase">
-        <mat-button-toggle value="yes">Yes</mat-button-toggle>
-        <mat-button-toggle value="no">No</mat-button-toggle>
+      <mat-button-toggle-group formControlName="duplicateCheck" value="duplicateCheck">
+        <mat-button-toggle value="1">Yes</mat-button-toggle>
+        <mat-button-toggle value="0">No</mat-button-toggle>
       </mat-button-toggle-group>
 
     </p>
     <p>
-      <button type="submit" [disabled]="!fg.valid" mat-raised-button color="accent">Submit</button>
+      <button type="submit" [disabled]="!fg.valid" mat-raised-button color="primary">Submit</button>
     </p>
   </form>
 </div>

@@ -1,4 +1,7 @@
 export class PollModel {
+  public constructor(init?: Partial<PollModel>) {
+    Object.assign(this, init);
+}
   pollGuid: string;
   name: string;
   options: string[];
@@ -8,6 +11,6 @@ export class PollModel {
 }
 
 export enum PollOptionTypes {
-  checkbox,
-  radiobutton
+  radiobutton,
+  checkbox
 }
