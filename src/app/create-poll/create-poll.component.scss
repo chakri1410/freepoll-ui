@@ -1,7 +1,7 @@
 .center-div{
   display: block;
-  margin-left: 25%;
-  margin-right: 25%;
+  margin-left: calc(100vh - 180px);
+  margin-right: calc(100vh - 160px);
   p{
     padding-top: 10px;
   }
