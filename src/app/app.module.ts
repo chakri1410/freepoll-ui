@@ -18,6 +18,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreatePollComponent } from './create-poll/create-poll.component';
 import { FreePollMaterialModules } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DialogPopupComponent } from './dialog-popup/dialog-popup.component';
 
 @NgModule({
    declarations: [
@@ -26,7 +27,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       HeaderComponent,
       FooterComponent,
       DashboardComponent,
-      CreatePollComponent
+      CreatePollComponent,
+      DialogPopupComponent
    ],
    imports: [
       BrowserModule,
@@ -35,13 +37,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       AppRoutingModule,
       HttpClientModule,
       BrowserAnimationsModule,
-      FreePollMaterialModules,
+      FreePollMaterialModules
    ],
    providers: [
-      { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
-      StatusService,
-      NavigationMenuService,
-      ApiService
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
+    StatusService,
+    NavigationMenuService,
+    ApiService
    ],
    bootstrap: [
       AppComponent
