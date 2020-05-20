@@ -14,7 +14,7 @@ export class CreatePollComponent {
 
   newoptionvalue = '';
   minDate = moment().toDate();
-  maxDate = moment().add(3, 'months').toDate();
+  maxDate = moment().add(3, 'months').format('L');
   fg: FormGroup;
 
   constructor(public pollService: PollService) {
@@ -35,7 +35,7 @@ export class CreatePollComponent {
     data.options = this.getOptions;
     data.type = this.getOptionType;
     data.duplicate = this.getDuplicateCheck;
-    data.endDate = this.getEndDate;
+    data.endDate = moment(this.getEndDate).toDate();
     this.pollService.addPoll(data).subscribe((returnData: PollModel) => {
       data = returnData;
     });
