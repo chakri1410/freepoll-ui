@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { PollService } from '../services/poll/poll.service';
-import { PollModel, PollOptionTypes } from '../models/poll';
+import { PollModel, PollOptionTypes, PollViewModel } from '../models/poll';
 import * as moment from 'moment';
+import { MatDialog } from '@angular/material';
+import { DialogPopupComponent } from '../dialog-popup/dialog-popup.component';
 
 @Component({
   selector: 'app-create-poll',
@@ -16,8 +18,10 @@ export class CreatePollComponent {
   minDate = moment().toDate();
   maxDate = moment().add(3, 'months').format('L');
   fg: FormGroup;
+  newPollViewModel: PollViewModel;
 
-  constructor(public pollService: PollService) {
+
+  constructor(public pollService: PollService, public dialog: MatDialog) {
     const enddate30days = moment().add(30, 'days').toDate();
     this.fg = new FormGroup({
       question: new FormControl('', [Validators.required, Validators.minLength(10)]),
@@ -25,6 +29,18 @@ export class CreatePollComponent {
       optionType: new FormControl(PollOptionTypes.radiobutton.toString()),
       duplicateCheck: new FormControl('0'),
       endDate: new FormControl(enddate30days, [Validators.required])
+    });
+  }
+
+
+  openDialog(mymessage: string): void {
+    const dialogRef = this.dialog.open(DialogPopupComponent, {
+      width: '250px',
+      data: {message: mymessage}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
     });
   }
 
@@ -36,9 +52,15 @@ export class CreatePollComponent {
     data.type = this.getOptionType;
     data.duplicate = this.getDuplicateCheck;
     data.endDate = moment(this.getEndDate).toDate();
-    this.pollService.addPoll(data).subscribe((returnData: PollModel) => {
-      data = returnData;
-    });
+    this.pollService.addPoll(data).subscribe(
+      result => {
+        let returnData: PollViewModel = result;
+        this.newPollViewModel = returnData;
+        this.openDialog(window.location.href+'/poll/'+returnData.PollGuid);
+      },
+      error =>{
+        this.openDialog("Failed to create poll");
+      });
   }
 
 
