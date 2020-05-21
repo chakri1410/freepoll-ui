@@ -15,7 +15,7 @@
         <mat-form-field>
           <input matInput placeholder="Option goes here" [formControl]="options.controls[eachIndex]">
           <mat-error>Cannot be empty</mat-error>
-          <button matSuffix mat-icon-button color="warn" aria-label="Delete" (click)="removeItem(eachIndex)">
+          <button matSuffix mat-icon-button type="button" color="warn" aria-label="Delete" (click)="removeItem(eachIndex)">
             <mat-icon>delete</mat-icon>
           </button>
         </mat-form-field>
@@ -79,7 +79,8 @@
 
     </p>
     <p>
-      <button type="submit" [disabled]="!fg.valid" mat-raised-button color="primary">Submit</button>
+      <button type="submit" [disabled]="fg.valid"
+      mat-raised-button color="primary">Submit</button>
     </p>
   </form>
 </div>

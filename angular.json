@@ -145,5 +145,8 @@
       }
     }
   },
-  "defaultProject": "freepoll-ui"
+  "defaultProject": "freepoll-ui",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -20,7 +20,7 @@ export class ApiService {
   }
 
   addPoll(data: PollModel) : Observable<PollViewModel>{
-    return this.http.put<PollViewModel>(this._API + 'poll/add', data);
+    return this.http.put<PollViewModel>(this._API + 'poll/add2', data);
   }
 
 }

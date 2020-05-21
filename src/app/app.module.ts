@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 import { StatusService } from './services/status/status.service';
 import { NavigationMenuService } from './services/navigation-menu/navigation-menu.service';
@@ -18,35 +18,39 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreatePollComponent } from './create-poll/create-poll.component';
 import { FreePollMaterialModules } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DialogPopupComponent } from './dialog-popup/dialog-popup.component';
+import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
+
+const provide = [
+  StatusService,
+  NavigationMenuService,
+  ApiService,
+  { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }];
 
 @NgModule({
-   declarations: [
-      AppComponent,
-      StatusListComponent,
-      HeaderComponent,
-      FooterComponent,
-      DashboardComponent,
-      CreatePollComponent,
-      DialogPopupComponent
-   ],
-   imports: [
-      BrowserModule,
-      FormsModule,
-      ReactiveFormsModule,
-      AppRoutingModule,
-      HttpClientModule,
-      BrowserAnimationsModule,
-      FreePollMaterialModules
-   ],
-   providers: [
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
-    StatusService,
-    NavigationMenuService,
-    ApiService
-   ],
-   bootstrap: [
-      AppComponent
-   ]
+  declarations: [
+    AppComponent,
+    StatusListComponent,
+    HeaderComponent,
+    FooterComponent,
+    DashboardComponent,
+    CreatePollComponent,
+    AlertDialogComponent
+  ],
+  entryComponents: [AlertDialogComponent],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FreePollMaterialModules
+  ],
+  providers: [
+    provide
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
