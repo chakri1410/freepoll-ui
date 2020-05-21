@@ -1,16 +1,16 @@
-<mat-spinner class="loadingSpinner" *ngIf="!pollData"></mat-spinner>
+<mat-spinner class="loadingSpinner" *ngIf="!loaded"></mat-spinner>
 
-<form class="form" *ngIf="pollData">
+<form class="form" [formGroup]="fg" (ngSubmit)="onSubmit()" *ngIf="loaded">
   <div class="inputGroup" style="background-color: transparent;margin-bottom:30px;">
     {{pollData.name}}
-
   </div>
   <div class="inputGroup"  style="background-color: transparent;margin-top:10px;font-size:1rem">
-    <mat-hint *ngIf="pollData.type != 0">(Note: You can select multiple options)</mat-hint>
+    <!-- *ngIf="pollData.type != 0" -->
+    <mat-hint >(Note: You can select multiple options)</mat-hint>
   </div>
-  <div class="inputGroup" *ngFor="let a of pollData.pollOptions;let i= index">
-    <input id="{{pollData.type == 0 ? 'radio'+i:  'option'+i }}" name="{{pollData.type == 0 ? 'radio':  'option'+i }}" [type]="pollData.type == 0 ? 'radio': 'checkbox'"/>
-    <label for="{{pollData.type == 0 ? 'radio'+i:  'option'+i }}">{{a.optionText}}</label>
+  <div formArrayName="options" class="inputGroup" *ngFor="let a of options.controls;let i= index">
+    <input id="{{pollData.type == 0 ? 'radio'+i:  'option'+i }}" [value]="options.controls[i].value.optionId" name="{{pollData.type == 0 ? 'radio':  'option'+i }}" (change)="onCheckChange($event)" [type]="pollData.type == 0 ? 'radio': 'checkbox'"/>
+    <label for="{{pollData.type == 0 ? 'radio'+i:  'option'+i }}">{{options.controls[i].value.optionText}}</label>
   </div>
   <div class="inputGroup" align="center" style="background-color: transparent;margin-top:30px;">
     <button mat-raised-button color="accent" style="width: 100%;" type="submit">SUBMIT</button>

@@ -41,3 +41,14 @@ export enum PollOptionTypes {
   radiobutton,
   checkbox
 }
+
+export class PollVote{
+  pollId: number;
+  options: PollOptionVote[]
+}
+
+export class PollOptionVote{
+  optionId: number;
+  optionText: string;
+  isChecked: boolean;
+}
