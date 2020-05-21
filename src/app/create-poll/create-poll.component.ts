@@ -52,7 +52,7 @@ export class CreatePollComponent {
     dialogRef.afterClosed().subscribe(result => {
       const newPollDetails = this.newPollViewModel;
       let sharelink = '';
-      if (newPollDetails != null) { sharelink = newPollDetails.PollGuid; }
+      if (newPollDetails != null) { sharelink = newPollDetails.pollGuid; }
       this._router.navigate([`poll/view/${sharelink}`]);
     });
   }
@@ -70,7 +70,7 @@ export class CreatePollComponent {
         result => {
           const returnData: PollViewModel = result;
           this.newPollViewModel = returnData;
-          this.openDialog('Poll Created successfully', 'Click on the link to copy', this.generateLink(returnData.PollGuid), true);
+          this.openDialog('Poll Created successfully', 'Click on the link to copy', this.generateLink(returnData.pollGuid), true);
         },
         error => {
           this.openDismiss('Failed to create poll, please try again', 'Close');

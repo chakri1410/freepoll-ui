@@ -1,0 +1,21 @@
+<mat-spinner class="loadingSpinner" *ngIf="!pollData"></mat-spinner>
+
+<form class="form" *ngIf="pollData">
+  <div class="inputGroup" style="background-color: transparent;margin-bottom:30px;">
+    {{pollData.name}}
+
+  </div>
+  <div class="inputGroup"  style="background-color: transparent;margin-top:10px;font-size:1rem">
+    <mat-hint *ngIf="pollData.type != 0">(Note: You can select multiple options)</mat-hint>
+  </div>
+  <div class="inputGroup" *ngFor="let a of pollData.pollOptions;let i= index">
+    <input id="{{pollData.type == 0 ? 'radio'+i:  'option'+i }}" name="{{pollData.type == 0 ? 'radio':  'option'+i }}" [type]="pollData.type == 0 ? 'radio': 'checkbox'"/>
+    <label for="{{pollData.type == 0 ? 'radio'+i:  'option'+i }}">{{a.optionText}}</label>
+  </div>
+  <div class="inputGroup" align="center" style="background-color: transparent;margin-top:30px;">
+    <button mat-raised-button color="accent" style="width: 100%;" type="submit">SUBMIT</button>
+  </div>
+</form>
+
+
+<link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">

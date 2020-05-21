@@ -19,8 +19,11 @@ export class ApiService {
     return this.http.get<Status[]>(this._API + 'status');
   }
 
-  addPoll(data: PollModel) : Observable<PollViewModel>{
-    return this.http.put<PollViewModel>(this._API + 'poll/add2', data);
+  addPoll(data: PollModel): Observable<PollViewModel>{
+    return this.http.put<PollViewModel>(this._API + 'poll/add', data);
   }
 
+  getPoll(pollguid: string): Observable<PollViewModel>{
+    return this.http.get<PollViewModel>(this._API + `poll/guid/${pollguid}`);
+  }
 }

@@ -11,30 +11,30 @@ export class PollModel {
 }
 
 export class PollViewModel{
-  PollId:	number;
-  Name:	string;
-  Type:	number;
-  Duplicate:	number;
-  Enddate:	Date;
-  CreatedBy:	number;
-  CreatedDate:	Date;
-  StatusId:	number;
-  UpdatedDate:	Date;
-  UpdatedBy: number;
-  PollGuid:	string;
-  PollOptions: PollOptions[]
+  pollId:	number;
+  name:	string;
+  type:	number;
+  duplicate:	number;
+  enddate:	Date;
+  createdBy:	number;
+  createdDate:	Date;
+  statusId:	number;
+  updatedDate:	Date;
+  updatedBy: number;
+  pollGuid:	string;
+  pollOptions: PollOptions[];
 }
 
 export class PollOptions{
-  PollOptionId:	number;
-  PollId:	number;
-  OptionText:	string;
-  StatusId:	number;
-  OrderId:	number;
-  CreatedBy:	number;
-  CreatedDate:	Date;
-  UpdatedBy:	number;
-  UpdatedDate:	Date;
+  pollOptionId:	number;
+  pollId:	number;
+  optionText:	string;
+  statusId:	number;
+  orderId:	number;
+  createdBy:	number;
+  createdDate:	Date;
+  updatedBy:	number;
+  updatedDate:	Date;
 }
 
 export enum PollOptionTypes {

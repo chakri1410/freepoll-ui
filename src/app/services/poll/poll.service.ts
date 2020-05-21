@@ -12,4 +12,8 @@ constructor(public api: ApiService) { }
 public addPoll(data: PollModel) {
   return this.api.addPoll(data);
 }
+
+public getPoll(pollguid: string) {
+  return this.api.getPoll(pollguid);
+}
 }

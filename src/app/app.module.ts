@@ -19,6 +19,7 @@ import { CreatePollComponent } from './create-poll/create-poll.component';
 import { FreePollMaterialModules } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
+import { ViewPollComponent } from './view-poll/view-poll.component';
 
 const provide = [
   StatusService,
@@ -27,30 +28,33 @@ const provide = [
   { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    StatusListComponent,
-    HeaderComponent,
-    FooterComponent,
-    DashboardComponent,
-    CreatePollComponent,
-    AlertDialogComponent
-  ],
-  entryComponents: [AlertDialogComponent],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    FreePollMaterialModules
-  ],
-  providers: [
-    provide
-  ],
-  bootstrap: [
-    AppComponent
-  ]
+   declarations: [
+      AppComponent,
+      StatusListComponent,
+      HeaderComponent,
+      FooterComponent,
+      DashboardComponent,
+      CreatePollComponent,
+      AlertDialogComponent,
+      ViewPollComponent
+   ],
+   entryComponents: [
+      AlertDialogComponent
+   ],
+   imports: [
+      BrowserModule,
+      FormsModule,
+      ReactiveFormsModule,
+      AppRoutingModule,
+      HttpClientModule,
+      BrowserAnimationsModule,
+      FreePollMaterialModules
+   ],
+   providers: [
+      provide
+   ],
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule { }
