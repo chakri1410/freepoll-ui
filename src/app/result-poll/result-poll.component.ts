@@ -18,13 +18,13 @@ export class ResultPollComponent implements OnInit {
   responseData: PollResult;
   columnNames = ['Question','Option'];
   options = {
-    colors: ['#be9fe1', '#c9b6e4', '#e1ccec', '#f1f1f6', '#63b7af','#abf0e9', '#dddddd'],
+    //colors: ['#4f3961', '#ea728c', '#fc9d9d', '#f3d4d4', '#ffbd69','#fe346e', '#b21f66'],
     titleTextStyle: {
       fontName: 'Roboto, "Helvetica Neue", sans-serif',
       fontSize: 20
     },
     legend: {
-      position: 'bottom',
+      position: 'top',
       textStyle:{
         fontName: 'Roboto, "Helvetica Neue", sans-serif',
         fontSize: 15
