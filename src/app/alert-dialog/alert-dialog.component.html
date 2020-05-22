@@ -16,10 +16,10 @@
 <mat-card *ngIf="isHtmlText" style="overflow: hidden;">
   <mat-card-header>
     <mat-card-title>{{heading}}</mat-card-title>
-    <mat-card-subtitle>{{subheading}}}</mat-card-subtitle>
+    <mat-card-subtitle>{{subheading}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <button mat-flat-button matSuffix (click)="onCopyClick()">
+    <button mat-flat-button matSuffix style="overflow: hidden;width: 100%;" (click)="onCopyClick()">
       {{message}}
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px"
         viewBox="0 0 488.3 488.3" width="14px" height="14px" xml:space="preserve">
