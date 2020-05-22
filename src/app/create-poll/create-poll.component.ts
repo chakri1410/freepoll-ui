@@ -17,7 +17,7 @@ import { OverlayService } from '../overlay/overlay.module';
 export class CreatePollComponent {
 
   newoptionvalue = '';
-  minDate = moment().toDate();
+  minDate = moment().add(1, 'day').toDate();
   maxDate = moment().add(3, 'months').format('L');
   fg: FormGroup;
   newPollViewModel: PollViewModel;
