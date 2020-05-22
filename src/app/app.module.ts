@@ -22,43 +22,53 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { ViewPollComponent } from './view-poll/view-poll.component';
 import { ResultPollComponent } from './result-poll/result-poll.component';
+import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.component';
+import { OverlayService } from './overlay/overlay.module';
+import { ProgressSpinnerModule } from './progress-spinner/progress-spinner.module';
+import { CommonModule } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material';
 
 const provide = [
   StatusService,
   NavigationMenuService,
   ApiService,
+  OverlayService,
   { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }];
 
 @NgModule({
-   declarations: [
-      AppComponent,
-      StatusListComponent,
-      HeaderComponent,
-      FooterComponent,
-      DashboardComponent,
-      CreatePollComponent,
-      AlertDialogComponent,
-      ViewPollComponent,
-      ResultPollComponent
-   ],
-   entryComponents: [
-      AlertDialogComponent
-   ],
-   imports: [
-      BrowserModule,
-      FormsModule,
-      ReactiveFormsModule,
-      AppRoutingModule,
-      HttpClientModule,
-      BrowserAnimationsModule,
-      GoogleChartsModule,
-      FreePollMaterialModules
-   ],
-   providers: [
-      provide
-   ],
-   bootstrap: [
-      AppComponent
-   ]
+  declarations: [
+    ProgressSpinnerComponent,
+    AppComponent,
+    StatusListComponent,
+    HeaderComponent,
+    FooterComponent,
+    DashboardComponent,
+    CreatePollComponent,
+    AlertDialogComponent,
+    ViewPollComponent,
+    ResultPollComponent
+  ],
+  entryComponents: [
+    ProgressSpinnerComponent, AppComponent, AlertDialogComponent
+  ],
+  imports: [
+    CommonModule,
+    MatProgressSpinnerModule,
+    ProgressSpinnerModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    GoogleChartsModule,
+    FreePollMaterialModules
+  ],
+  providers: [
+    provide
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
