@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PollService } from '../services/poll/poll.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PollViewModel, PollOptions, PollVote, PollOptionVote } from '../models/poll';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-view-poll',
@@ -13,27 +14,42 @@ export class ViewPollComponent implements OnInit {
 
   routeGuid: string;
   public pollData: PollViewModel;
-  pollExists = true;
+  public pollExists = true;
   public loaded = false;
+  public errorMessage = '';
+
   fg: FormGroup;
   selected = Array(0);
 
   constructor(private _pollService: PollService,
-    private _activateRoute: ActivatedRoute) {
+              private _activateRoute: ActivatedRoute,
+              private _snackBar: MatSnackBar,
+              private _router: Router) {
 
     this.emptyFormGroup();
     this._activateRoute.params.subscribe((data) => {
-      this.routeGuid = data["id"];
+      this.routeGuid = data['id'];
 
+      /// Get Poll Details
       this._pollService.getPoll(this.routeGuid).subscribe(
         (data: PollViewModel) => {
+          this.loaded = true;
           this.pollData = data;
           this.fillFormGroup(data);
-          this.loaded = true;
           this.pollExists = true;
         },
         error => {
-          this.pollExists = false;
+          console.log(error);
+          this.loaded = true;
+          switch(error.error)
+          {
+            case 'PollNotFound':
+              this.errorMessage = 'Oops the poll you are looking for is not there....';
+              break;
+            default:
+              this.errorMessage = 'Something went wrong, Please try after sometime.';
+              break;
+          }
         });
     });
   }
@@ -73,6 +89,7 @@ export class ViewPollComponent implements OnInit {
     });
   }
 
+  // events
   onCheckChange(event) {
     if (event.target.checked) {
       console.log(event.target);
@@ -90,11 +107,40 @@ export class ViewPollComponent implements OnInit {
   }
 
   onSubmit() {
-    this.options.controls.forEach(element => {
-      element.setValue({ optionId: element.value.optionId, optionText: element.value.optionText, isChecked : (this.selected.includes(element.value.optionId.toString()))});
-    });
-
-    console.log(this.fg.value);
+    if(this.selected.length > 0)
+    {
+      let votePollDetails = new PollVote();
+      votePollDetails.pollId = this.pollData.pollId;
+      votePollDetails.options = this.selected;
+      this._pollService.vote(votePollDetails).subscribe((data: boolean)=>{
+        if(data) {
+          this.openDismiss('You have voted','Dismiss');
+          this._router.navigate([`poll/result/${this.routeGuid}`]);
+        }
+      },
+      error=>{
+        switch(error.error)
+        {
+          case 'PollNotFound':
+            this.openDismiss('Invalid Poll','Dismiss');
+            break;
+          case 'PollEnded':
+            this.openDismiss('The Poll you are looking for ended','Dismiss');
+            break;
+          case 'PollVoted':
+            this.openDismiss('No cheating you already voted','Dismiss');
+            break;
+          default:
+            this.openDismiss('Something went wrong','Dismiss');
+            break;
+        }
+        this.fg.disable();
+      })
+    }
+    else
+    {
+      this.openDismiss("Select atleast one option","Dismiss");
+    }
   }
 
   // add new option
@@ -106,6 +152,13 @@ export class ViewPollComponent implements OnInit {
   // get data
   get options(): FormArray {
     return this.fg.get('options') as FormArray;
+  }
+
+  // open snackbar
+  openDismiss(message: string, buttontext: string) {
+    this._snackBar.open(message, buttontext, {
+      duration: 3000,
+    });
   }
 
 }

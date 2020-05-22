@@ -1,0 +1,19 @@
+<mat-spinner class="loadingSpinner" *ngIf="title == ''"></mat-spinner>
+
+<div class="d-flex justify-content-center" *ngIf="title != ''">
+  <!-- <mat-grid-list cols="2" rows="4">
+    <mat-grid-tile colspan="2"> -->
+      <google-chart #chart [title]="title" [type]="type" [data]="data" [columns]="columnNames" [options]="options"
+        [width]="width" [height]="height">
+      </google-chart>
+    <!-- </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <mat-expansion-panel [style.padding.top.px]="height">
+        <mat-expansion-panel-header>{{responseData.question}}</mat-expansion-panel-header>
+        <div *ngFor="let o of responseData.options">
+          <mat-label>{{o.label}} - ({{o.count}})</mat-label>
+        </div>
+      </mat-expansion-panel>
+    </mat-grid-tile>
+  </mat-grid-list> -->
+</div>

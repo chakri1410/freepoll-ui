@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 import { StatusService } from './services/status/status.service';
 import { NavigationMenuService } from './services/navigation-menu/navigation-menu.service';
@@ -20,6 +21,7 @@ import { FreePollMaterialModules } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { ViewPollComponent } from './view-poll/view-poll.component';
+import { ResultPollComponent } from './result-poll/result-poll.component';
 
 const provide = [
   StatusService,
@@ -36,7 +38,8 @@ const provide = [
       DashboardComponent,
       CreatePollComponent,
       AlertDialogComponent,
-      ViewPollComponent
+      ViewPollComponent,
+      ResultPollComponent
    ],
    entryComponents: [
       AlertDialogComponent
@@ -48,6 +51,7 @@ const provide = [
       AppRoutingModule,
       HttpClientModule,
       BrowserAnimationsModule,
+      GoogleChartsModule,
       FreePollMaterialModules
    ],
    providers: [

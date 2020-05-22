@@ -52,3 +52,14 @@ export class PollOptionVote{
   optionText: string;
   isChecked: boolean;
 }
+
+export class GraphResult{
+  label: string;
+  count: number;
+}
+
+export class PollResult{
+  question: string;
+  options: GraphResult[];
+  regions: GraphResult[];
+}
