@@ -84,7 +84,7 @@ export class CreatePollComponent {
 
   /// Get Values
   generateLink(shareId: string): string {
-    return window.location.origin + `/poll/${shareId}`;
+    return window.location.origin + `/poll/view/${shareId}`;
   }
 
   get getEndDate() {
