@@ -5,8 +5,7 @@
     {{pollData.name}}
   </div>
   <div class="inputGroup"  style="background-color: transparent;margin-top:10px;font-size:1rem">
-    <!-- *ngIf="pollData.type != 0" -->
-    <mat-hint >(Note: You can select multiple options)</mat-hint>
+    <mat-hint *ngIf="pollData.type != 0">(Note: You can select multiple options)</mat-hint>
   </div>
   <div formArrayName="options" class="inputGroup" *ngFor="let a of options.controls;let i= index">
     <input id="{{pollData.type == 0 ? 'radio'+i:  'option'+i }}" [value]="options.controls[i].value.optionId" name="{{pollData.type == 0 ? 'radio':  'option'+i }}" (change)="onCheckChange($event)" [type]="pollData.type == 0 ? 'radio': 'checkbox'"/>
