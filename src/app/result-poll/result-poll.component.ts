@@ -27,7 +27,7 @@ export class ResultPollComponent implements OnInit {
       position: 'top',
       textStyle:{
         fontName: 'Roboto, "Helvetica Neue", sans-serif',
-        fontSize: 15
+        fontSize: 12
       },
       maxLines: 20
     },
