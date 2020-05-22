@@ -39,7 +39,6 @@ export class ViewPollComponent implements OnInit {
           this.pollExists = true;
         },
         error => {
-          console.log(error);
           this.loaded = true;
           switch(error.error)
           {
@@ -92,7 +91,6 @@ export class ViewPollComponent implements OnInit {
   // events
   onCheckChange(event) {
     if (event.target.checked) {
-      console.log(event.target);
       if (this.pollData.type == 0) {
         this.selected.pop();
       }

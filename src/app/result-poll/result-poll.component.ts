@@ -24,13 +24,14 @@ export class ResultPollComponent implements OnInit {
       fontSize: 20
     },
     legend: {
-      position: 'top',
+      position: 'bottom',
       textStyle:{
         fontName: 'Roboto, "Helvetica Neue", sans-serif',
         fontSize: 15
       },
       maxLines: 20
     },
+    vAxis: {maxValue: 10},
     is3D: false,
     pieHole: 0.4
   };
@@ -41,7 +42,7 @@ export class ResultPollComponent implements OnInit {
               private _activateRoute: ActivatedRoute) {
     this.getScreenSize();
     this.width = (this.screenWidth/100)*70;
-    this.height = (this.screenHeight/100)*70;
+    this.height = (this.screenHeight);
     // Get Poll results
     this._activateRoute.params.subscribe((data) => {
       const routeGuid: string = data['id'];
