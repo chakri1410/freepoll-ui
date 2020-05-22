@@ -19,7 +19,7 @@ export class ResultPollComponent implements OnInit {
   columnNames = ['Question','Option'];
   options = {
     chartArea:'left',
-    //colors: ['#4f3961', '#ea728c', '#fc9d9d', '#f3d4d4', '#ffbd69','#fe346e', '#b21f66'],
+    colors: ['#4f3961', '#ea728c', '#fc9d9d', '#f3d4d4', '#ffbd69','#fe346e', '#b21f66'],
     titleTextStyle: {
       fontName: 'Roboto, "Helvetica Neue", sans-serif',
       fontSize: 20
