@@ -24,6 +24,9 @@ import { ViewPollComponent } from './view-poll/view-poll.component';
 import { ResultPollComponent } from './result-poll/result-poll.component';
 import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.component';
 import { OverlayService } from './overlay/overlay.module';
+import { ProgressSpinnerModule } from './progress-spinner/progress-spinner.module';
+import { CommonModule } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material';
 
 const provide = [
   StatusService,
@@ -34,6 +37,7 @@ const provide = [
 
 @NgModule({
   declarations: [
+    ProgressSpinnerComponent,
     AppComponent,
     StatusListComponent,
     HeaderComponent,
@@ -42,13 +46,15 @@ const provide = [
     CreatePollComponent,
     AlertDialogComponent,
     ViewPollComponent,
-    ResultPollComponent,
-    ProgressSpinnerComponent
+    ResultPollComponent
   ],
   entryComponents: [
-    AppComponent, AlertDialogComponent, ProgressSpinnerComponent
+    ProgressSpinnerComponent, AppComponent, AlertDialogComponent
   ],
   imports: [
+    CommonModule,
+    MatProgressSpinnerModule,
+    ProgressSpinnerModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

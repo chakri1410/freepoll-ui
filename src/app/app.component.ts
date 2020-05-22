@@ -14,7 +14,7 @@ export class AppComponent implements OnDestroy {
 
   fillerNav: NavigationModel[];
   mobileQuery: MediaQueryList;
-  private displayProgressSpinner = false;
+  public displayProgressSpinner = false;
   private mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
