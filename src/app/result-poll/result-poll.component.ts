@@ -18,7 +18,7 @@ export class ResultPollComponent implements OnInit {
   responseData: PollResult;
   columnNames = ['Question','Option'];
   options = {
-    // colors: ['#be9fe1', '#c9b6e4', '#e1ccec', '#f1f1f6', '#63b7af','#abf0e9', '#dddddd'],
+    colors: ['#be9fe1', '#c9b6e4', '#e1ccec', '#f1f1f6', '#63b7af','#abf0e9', '#dddddd'],
     titleTextStyle: {
       fontName: 'Roboto, "Helvetica Neue", sans-serif',
       fontSize: 20
