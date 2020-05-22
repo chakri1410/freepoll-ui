@@ -9,7 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 import { StatusService } from './services/status/status.service';
 import { NavigationMenuService } from './services/navigation-menu/navigation-menu.service';
@@ -18,7 +19,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreatePollComponent } from './create-poll/create-poll.component';
 import { FreePollMaterialModules } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DialogPopupComponent } from './dialog-popup/dialog-popup.component';
+import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
+import { ViewPollComponent } from './view-poll/view-poll.component';
+import { ResultPollComponent } from './result-poll/result-poll.component';
+
+const provide = [
+  StatusService,
+  NavigationMenuService,
+  ApiService,
+  { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }];
 
 @NgModule({
    declarations: [
@@ -28,7 +37,12 @@ import { DialogPopupComponent } from './dialog-popup/dialog-popup.component';
       FooterComponent,
       DashboardComponent,
       CreatePollComponent,
-      DialogPopupComponent
+      AlertDialogComponent,
+      ViewPollComponent,
+      ResultPollComponent
+   ],
+   entryComponents: [
+      AlertDialogComponent
    ],
    imports: [
       BrowserModule,
@@ -37,13 +51,11 @@ import { DialogPopupComponent } from './dialog-popup/dialog-popup.component';
       AppRoutingModule,
       HttpClientModule,
       BrowserAnimationsModule,
+      GoogleChartsModule,
       FreePollMaterialModules
    ],
    providers: [
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
-    StatusService,
-    NavigationMenuService,
-    ApiService
+      provide
    ],
    bootstrap: [
       AppComponent

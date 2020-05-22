@@ -4,8 +4,9 @@ import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { PollService } from '../services/poll/poll.service';
 import { PollModel, PollOptionTypes, PollViewModel } from '../models/poll';
 import * as moment from 'moment';
-import { MatDialog } from '@angular/material';
-import { DialogPopupComponent } from '../dialog-popup/dialog-popup.component';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-poll',
@@ -21,7 +22,9 @@ export class CreatePollComponent {
   newPollViewModel: PollViewModel;
 
 
-  constructor(public pollService: PollService, public dialog: MatDialog) {
+  constructor(public pollService: PollService, public dialog: MatDialog,
+    private _snackBar: MatSnackBar,
+    private _router: Router) {
     const enddate30days = moment().add(30, 'days').toDate();
     this.fg = new FormGroup({
       question: new FormControl('', [Validators.required, Validators.minLength(10)]),
@@ -33,39 +36,58 @@ export class CreatePollComponent {
   }
 
 
-  openDialog(mymessage: string): void {
-    const dialogRef = this.dialog.open(DialogPopupComponent, {
-      width: '250px',
-      data: {message: mymessage}
+  openDialog(_heading: string, _subheading: string, _message: string, _isLinkShare: boolean) {
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
+      data: {
+        message: _message,
+        heading: _heading,
+        subheading: _subheading,
+        isHtml: _isLinkShare,
+        buttonText: {
+          cancel: 'Close'
+        }
+      },
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      const newPollDetails = this.newPollViewModel;
+      let sharelink = '';
+      if (newPollDetails != null) { sharelink = newPollDetails.pollGuid; }
+      this._router.navigate([`poll/view/${sharelink}`]);
     });
   }
 
   // On Submit
   onSubmit() {
-    let data: PollModel = new PollModel();
-    data.name = this.getQuestion;
-    data.options = this.getOptions;
-    data.type = this.getOptionType;
-    data.duplicate = this.getDuplicateCheck;
-    data.endDate = moment(this.getEndDate).toDate();
-    this.pollService.addPoll(data).subscribe(
-      result => {
-        let returnData: PollViewModel = result;
-        this.newPollViewModel = returnData;
-        this.openDialog(window.location.href+'/poll/'+returnData.PollGuid);
-      },
-      error =>{
-        this.openDialog("Failed to create poll");
-      });
+    if (this.fg.valid) {
+      let data: PollModel = new PollModel();
+      data.name = this.getQuestion;
+      data.options = this.getOptions;
+      data.type = this.getOptionType;
+      data.duplicate = this.getDuplicateCheck;
+      data.endDate = moment(this.getEndDate).toDate();
+      this.pollService.addPoll(data).subscribe(
+        result => {
+          const returnData: PollViewModel = result;
+          this.newPollViewModel = returnData;
+          this.openDialog('Poll Created successfully', 'Click on the link to copy', this.generateLink(returnData.pollGuid), true);
+        },
+        error => {
+          this.openDismiss('Failed to create poll, please try again', 'Close');
+        });
+    }
+    else{
+      this.openDismiss('Please fix the error and try again', 'Close');
+    }
   }
 
 
   /// Get Values
-  get getEndDate(){
+  generateLink(shareId: string): string {
+    return window.location.href + `/poll/${shareId}`;
+  }
+
+  get getEndDate() {
     return this.fg.get('endDate').value;
   }
 
@@ -81,7 +103,7 @@ export class CreatePollComponent {
     return this.fg.get('duplicateCheck').value;
   }
 
-  get getOptions(){
+  get getOptions() {
     return this.fg.get('options').value;
   }
 
@@ -107,4 +129,10 @@ export class CreatePollComponent {
     moveItemInArray(this.options.value, event.previousIndex, event.currentIndex);
   }
 
+  // open snackbar
+  openDismiss(message: string, buttontext: string) {
+    this._snackBar.open(message, buttontext, {
+      duration: 3000,
+    });
+  }
 }
