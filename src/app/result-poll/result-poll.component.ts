@@ -42,7 +42,7 @@ export class ResultPollComponent implements OnInit {
   constructor(private _pollService: PollService,
               private _activateRoute: ActivatedRoute) {
     this.getScreenSize();
-    this.width = (this.screenWidth/100)*70;
+    this.width = (this.screenWidth);
     this.height = (this.screenHeight);
     // Get Poll results
     this._activateRoute.params.subscribe((data) => {
