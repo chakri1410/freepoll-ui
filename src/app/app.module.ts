@@ -22,43 +22,47 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { ViewPollComponent } from './view-poll/view-poll.component';
 import { ResultPollComponent } from './result-poll/result-poll.component';
+import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.component';
+import { OverlayService } from './overlay/overlay.module';
 
 const provide = [
   StatusService,
   NavigationMenuService,
   ApiService,
+  OverlayService,
   { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }];
 
 @NgModule({
-   declarations: [
-      AppComponent,
-      StatusListComponent,
-      HeaderComponent,
-      FooterComponent,
-      DashboardComponent,
-      CreatePollComponent,
-      AlertDialogComponent,
-      ViewPollComponent,
-      ResultPollComponent
-   ],
-   entryComponents: [
-      AlertDialogComponent
-   ],
-   imports: [
-      BrowserModule,
-      FormsModule,
-      ReactiveFormsModule,
-      AppRoutingModule,
-      HttpClientModule,
-      BrowserAnimationsModule,
-      GoogleChartsModule,
-      FreePollMaterialModules
-   ],
-   providers: [
-      provide
-   ],
-   bootstrap: [
-      AppComponent
-   ]
+  declarations: [
+    AppComponent,
+    StatusListComponent,
+    HeaderComponent,
+    FooterComponent,
+    DashboardComponent,
+    CreatePollComponent,
+    AlertDialogComponent,
+    ViewPollComponent,
+    ResultPollComponent,
+    ProgressSpinnerComponent
+  ],
+  entryComponents: [
+    AppComponent, AlertDialogComponent, ProgressSpinnerComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    GoogleChartsModule,
+    FreePollMaterialModules
+  ],
+  providers: [
+    provide
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
 import { Router } from '@angular/router';
+import { OverlayService } from '../overlay/overlay.module';
 
 @Component({
   selector: 'app-create-poll',
@@ -23,8 +24,9 @@ export class CreatePollComponent {
 
 
   constructor(public pollService: PollService, public dialog: MatDialog,
-    private _snackBar: MatSnackBar,
-    private _router: Router) {
+              private _snackBar: MatSnackBar,
+              private _router: Router,
+              private _overlayService: OverlayService) {
     const enddate30days = moment().add(30, 'days').toDate();
     this.fg = new FormGroup({
       question: new FormControl('', [Validators.required, Validators.minLength(10)]),
@@ -60,7 +62,13 @@ export class CreatePollComponent {
   // On Submit
   onSubmit() {
     if (this.fg.valid) {
-      let data: PollModel = new PollModel();
+      if(this.options.length <= 1)
+      {
+        this._snackBar.open('Enter atleast two options','Dismiss');
+        return;
+      }
+      this._overlayService.show();
+      const data: PollModel = new PollModel();
       data.name = this.getQuestion;
       data.options = this.getOptions;
       data.type = this.getOptionType;
@@ -70,14 +78,16 @@ export class CreatePollComponent {
         result => {
           const returnData: PollViewModel = result;
           this.newPollViewModel = returnData;
+          this._overlayService.hide();
           this.openDialog('Poll Created successfully', 'Click on the link to copy', this.generateLink(returnData.pollGuid), true);
         },
         error => {
           this.openDismiss('Failed to create poll, please try again', 'Close');
+          this._overlayService.hide();
         });
-    }
-    else{
+    } else {
       this.openDismiss('Please fix the error and try again', 'Close');
+      this._overlayService.hide();
     }
   }
 

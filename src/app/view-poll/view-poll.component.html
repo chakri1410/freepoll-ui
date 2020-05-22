@@ -1,4 +1,3 @@
-<mat-spinner class="loadingSpinner" *ngIf="!loaded"></mat-spinner>
 <div *ngIf="loaded">
   <h2 class="mat-h1" align="center" *ngIf="errorMessage != ''">{{errorMessage}}</h2>
   <form class="form" [formGroup]="fg" (ngSubmit)="onSubmit()" *ngIf="errorMessage == ''">
