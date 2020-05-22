@@ -48,7 +48,6 @@ export class ResultPollComponent implements OnInit {
       this._pollService.result(routeGuid).subscribe((data: PollResult)=>{
         this.setGraphData(data);
         this.responseData = data;
-        console.log(data);
       },
       error=> {
 
@@ -74,7 +73,6 @@ export class ResultPollComponent implements OnInit {
     getScreenSize(event?) {
           this.screenHeight = window.innerHeight;
           this.screenWidth = window.innerWidth;
-          console.log(this.screenHeight, this.screenWidth);
     }
 
 }
