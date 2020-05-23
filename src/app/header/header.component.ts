@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatMenuTrigger } from '@angular/material';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { MatMenuTrigger, MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +8,8 @@ import { MatMenuTrigger } from '@angular/material';
 })
 
 export class HeaderComponent implements OnInit {
+  @Input() sidenav: MatSidenav;
+
   constructor() { }
 
   ngOnInit() {

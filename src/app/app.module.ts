@@ -8,7 +8,7 @@ import { StatusListComponent } from './status-list/status-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { GoogleChartsModule } from 'angular-google-charts';
 
@@ -27,8 +27,11 @@ import { OverlayService } from './overlay/overlay.module';
 import { ProgressSpinnerModule } from './progress-spinner/progress-spinner.module';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material';
+import { LeftMenuComponent } from './left-menu/left-menu.component';
+import { SidenavService } from './services/sidenav/sidenav.service';
 
 const provide = [
+  SidenavService,
   StatusService,
   NavigationMenuService,
   ApiService,
@@ -38,6 +41,7 @@ const provide = [
 @NgModule({
   declarations: [
     ProgressSpinnerComponent,
+    LeftMenuComponent,
     AppComponent,
     StatusListComponent,
     HeaderComponent,
@@ -49,9 +53,11 @@ const provide = [
     ResultPollComponent
   ],
   entryComponents: [
-    ProgressSpinnerComponent, AppComponent, AlertDialogComponent
+    ProgressSpinnerComponent, LeftMenuComponent, AlertDialogComponent
   ],
   imports: [
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
     CommonModule,
     MatProgressSpinnerModule,
     ProgressSpinnerModule,
@@ -60,7 +66,6 @@ const provide = [
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule,
     GoogleChartsModule,
     FreePollMaterialModules
   ],

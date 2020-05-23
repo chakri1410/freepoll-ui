@@ -1,21 +1,27 @@
 .poll-icon{
-  font-size: 200px;
+  font-size: 4rem;
+  font-variant-caps: all-petite-caps;
+  position: relative;
+  left: 1vw;
+  color:#9e579d;
 }
 .group-icon{
   position: relative;
-  left: 48px;
-  font-size: 103px;
-  margin-bottom: 149px;
-  color: rebeccapurple;
+  font-size: 4rem;
+  font-variant-caps: all-petite-caps;
+  color: #574b90;
 }
 
 .share-icon{
-  font-size: 100px;
+  font-size: 4rem;
+  left: 1vw;
+  font-variant-caps: all-petite-caps;
   position: relative;
-  left: -76px;
-  top: 64px;
-  color: #ff4081;
+  color: #fc85ae;
 }
 .headingcolor{
-  color: #3f51b5;
+  color: #303a52;
+  opacity: 0.8;
+  font-size: 2rem;
+  top:10vh;
 }

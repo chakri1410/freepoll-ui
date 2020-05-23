@@ -3,6 +3,7 @@ import { NavigationModel } from './models/navigation';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { NavigationMenuService } from './services/navigation-menu/navigation-menu.service';
 import { OverlayService } from './overlay/overlay.module';
+import { SidenavService } from './services/sidenav/sidenav.service';
 
 @Component({
   selector: 'app-root',
@@ -12,19 +13,22 @@ import { OverlayService } from './overlay/overlay.module';
 export class AppComponent implements OnDestroy {
   title = 'freepoll-ui';
 
-  fillerNav: NavigationModel[];
   mobileQuery: MediaQueryList;
   public displayProgressSpinner = false;
   private mobileQueryListener: () => void;
+  public onSideNavChange: boolean;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
-              navigationMenuService: NavigationMenuService,
-              overlayService: OverlayService) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this.mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this.mobileQueryListener);
-    this.fillerNav = navigationMenuService.get();
+              overlayService: OverlayService,
+              private _sidenavService: SidenavService) {
+    // this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    //this.mobileQueryListener = () => changeDetectorRef.detectChanges();
+    //this.mobileQuery.addListener(this.mobileQueryListener);
 
+    this._sidenavService.sideNavState$.subscribe( res => {
+      console.log(res)
+      this.onSideNavChange = res;
+    });
     overlayService.progressBarVisibility.subscribe((data)=>{
       this.displayProgressSpinner = data;
     });

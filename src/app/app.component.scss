@@ -14,18 +14,23 @@
   z-index: 2;
 }
 
-.freepoll-app-name {
-  margin-left: 8px;
-  button{
-    font-size: 1.2rem;
-  }
+.frepoll-toolbar-spacer{
+  flex: 1 1 auto;
 }
 
+.freepoll-user-icon{
+  padding: 0 5vw;
+}
 .freepoll-sidenav-container {
   /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
      causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
   flex: 2;
 
+}
+
+.main_content {
+  width:100%;
+  height: calc(100vh - 100px);
 }
 
 .freepoll-is-mobile .freepoll-sidenav-container {

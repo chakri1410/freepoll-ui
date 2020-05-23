@@ -1,6 +1,7 @@
-<button mat-button>Home</button>
-<button mat-button [matMenuTriggerFor]="menu">Dashboard</button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>List</button>
-  <button mat-menu-item>Tiles</button>
-</mat-menu>
+<mat-toolbar color="primary" class="freepoll-toolbar">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <h1 class="freepoll-app-name"><button routerLink="." mat-button>FreePoll</button></h1>
+  <span class="spacer"></span>
+</mat-toolbar>
