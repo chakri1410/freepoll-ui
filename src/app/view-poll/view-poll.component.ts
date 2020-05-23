@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PollViewModel, PollOptions, PollVote, PollOptionVote } from '../models/poll';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { OverlayService } from '../overlay/overlay.module';
 
 @Component({
   selector: 'app-view-poll',
@@ -24,9 +25,11 @@ export class ViewPollComponent implements OnInit {
   constructor(private _pollService: PollService,
               private _activateRoute: ActivatedRoute,
               private _snackBar: MatSnackBar,
-              private _router: Router) {
+              private _router: Router,
+              private _overlayService: OverlayService) {
 
     this.emptyFormGroup();
+    this._overlayService.show();
     this._activateRoute.params.subscribe((data) => {
       this.routeGuid = data['id'];
 
@@ -37,9 +40,11 @@ export class ViewPollComponent implements OnInit {
           this.pollData = data;
           this.fillFormGroup(data);
           this.pollExists = true;
+          this._overlayService.hide();
         },
         error => {
           this.loaded = true;
+          this._overlayService.hide();
           switch(error.error)
           {
             case 'PollNotFound':
@@ -107,16 +112,19 @@ export class ViewPollComponent implements OnInit {
   onSubmit() {
     if(this.selected.length > 0)
     {
+      this._overlayService.show();
       let votePollDetails = new PollVote();
       votePollDetails.pollId = this.pollData.pollId;
       votePollDetails.options = this.selected;
       this._pollService.vote(votePollDetails).subscribe((data: boolean)=>{
         if(data) {
+          this._overlayService.hide();
           this.openDismiss('You have voted','Dismiss');
           this._router.navigate([`poll/result/${this.routeGuid}`]);
         }
       },
       error=>{
+        this._overlayService.hide();
         switch(error.error)
         {
           case 'PollNotFound':
