@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreatePollComponent } from './create-poll/create-poll.component';
 import { ViewPollComponent } from './view-poll/view-poll.component';
 import { ResultPollComponent } from './result-poll/result-poll.component';
+import { SearchPollComponent } from './search-poll/search-poll.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'poll/new', component: CreatePollComponent },
   { path: 'poll/view/:id', component: ViewPollComponent  },
   { path: 'poll/result/:id', component: ResultPollComponent  },
+  { path: 'poll/search', component: SearchPollComponent  },
   { path: '', component: DashboardComponent, pathMatch: 'full' }
 ];
 
