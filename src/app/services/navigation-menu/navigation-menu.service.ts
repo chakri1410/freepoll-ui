@@ -11,7 +11,8 @@ constructor() {
 
     {name: 'Home', url: '.', children:[]},
     {name: 'Poll', url: '#', children :[
-      {name: 'New Poll', url: 'poll/new', children: []},
+      {name: 'Create', url: 'poll/new', children: []},
+      {name: 'Vote / Results', url: 'poll/search', children: []},
     ]},
     {name: 'Status', url: 'status', children: []}];
     // {name: 'Home', url: '.'},
