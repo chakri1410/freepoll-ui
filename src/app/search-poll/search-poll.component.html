@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-center">
+  <div class="col-md-4 col-sm-4">
+    <mat-form-field class="full-width" style="width: 100%;">
+      <mat-label>Enter the poll id you have</mat-label>
+      <input matInput [(ngModel)]="pollSearchText">
+    </mat-form-field>
+  </div>
+  <div class="col-md-2 col-sm-2">
+    <button mat-raised-button color="accent" (click)="viewClick()" style="height: 70%;text-align: center;">Vote</button>
+    <button mat-raised-button color="accent" (click)="resultsClick()" style="height: 70%;margin-left: 20px;text-align: center">Results</button>
+  </div>
+</div>

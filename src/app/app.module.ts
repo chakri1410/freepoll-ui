@@ -27,6 +27,7 @@ import { OverlayService } from './overlay/overlay.module';
 import { ProgressSpinnerModule } from './progress-spinner/progress-spinner.module';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material';
+import { SearchPollComponent } from './search-poll/search-poll.component';
 
 const provide = [
   StatusService,
@@ -36,39 +37,42 @@ const provide = [
   { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }];
 
 @NgModule({
-  declarations: [
-    ProgressSpinnerComponent,
-    AppComponent,
-    StatusListComponent,
-    HeaderComponent,
-    FooterComponent,
-    DashboardComponent,
-    CreatePollComponent,
-    AlertDialogComponent,
-    ViewPollComponent,
-    ResultPollComponent
-  ],
-  entryComponents: [
-    ProgressSpinnerComponent, AppComponent, AlertDialogComponent
-  ],
-  imports: [
-    CommonModule,
-    MatProgressSpinnerModule,
-    ProgressSpinnerModule,
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    GoogleChartsModule,
-    FreePollMaterialModules
-  ],
-  providers: [
-    provide
-  ],
-  bootstrap: [
-    AppComponent
-  ]
+   declarations: [
+      ProgressSpinnerComponent,
+      AppComponent,
+      StatusListComponent,
+      HeaderComponent,
+      FooterComponent,
+      DashboardComponent,
+      CreatePollComponent,
+      AlertDialogComponent,
+      ViewPollComponent,
+      ResultPollComponent,
+      SearchPollComponent
+   ],
+   entryComponents: [
+      ProgressSpinnerComponent,
+      AppComponent,
+      AlertDialogComponent
+   ],
+   imports: [
+      CommonModule,
+      MatProgressSpinnerModule,
+      ProgressSpinnerModule,
+      BrowserModule,
+      FormsModule,
+      ReactiveFormsModule,
+      AppRoutingModule,
+      HttpClientModule,
+      BrowserAnimationsModule,
+      GoogleChartsModule,
+      FreePollMaterialModules
+   ],
+   providers: [
+      provide
+   ],
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule { }
