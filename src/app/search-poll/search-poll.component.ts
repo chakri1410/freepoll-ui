@@ -45,6 +45,10 @@ export class SearchPollComponent implements OnInit {
             this.openDismiss('Invalid Poll', 'Dismiss');
             break;
           case 'PollEnded':
+            if (type === 'result') {
+              this._router.navigate([`poll/${type}/` + this.pollSearchText]);
+              break;
+            }
             this.openDismiss('The Poll you are looking for ended', 'Dismiss');
             break;
           default:
