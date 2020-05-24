@@ -9,7 +9,7 @@ import { OverlayService } from '../overlay/overlay.module';
 @Component({
   selector: 'app-search-poll',
   templateUrl: './search-poll.component.html',
-  styleUrls: ['./search-poll.component.css']
+  styleUrls: ['./search-poll.component.scss']
 })
 export class SearchPollComponent implements OnInit {
 

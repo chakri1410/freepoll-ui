@@ -5,8 +5,8 @@
       <input matInput [(ngModel)]="pollSearchText">
     </mat-form-field>
   </div>
-  <div class="col-md-2 col-sm-2">
-    <button mat-raised-button color="accent" (click)="viewClick()" style="height: 70%;text-align: center;">Vote</button>
-    <button mat-raised-button color="accent" (click)="resultsClick()" style="height: 70%;margin-left: 20px;text-align: center">Results</button>
+  <div class="col-md-2 col-sm-2 div2">
+    <button mat-raised-button color="accent" class="votebutton" (click)="viewClick()">Vote</button>
+    <button mat-raised-button color="accent" class="resultbutton" (click)="resultsClick()" style="">Results</button>
   </div>
 </div>
