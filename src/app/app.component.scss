@@ -69,9 +69,9 @@
 
 /* The navigation links inside the overlay */
 .overlay a {
-  padding: 8px;
+  padding: 0.2rem;
   text-decoration: none;
-  font-size: 36px;
+  font-size: 1.5rem;
   color: mat-color($accent,50);
   display: block; /* Display block instead of inline */
   transition: 0.3s; /* Transition effects on hover (color) */
