@@ -1,3 +1,5 @@
+@import '../../styles.scss';
+
 .inputGroup {
   background-color: #fff;
   display: block;
@@ -22,7 +24,7 @@
   height: 10px;
   border-radius: 50%;
   content: '';
-  background-color: #5562eb;
+  background-color: mat-color($primary);
   position: absolute;
   left: 50%;
   top: 50%;
@@ -62,8 +64,8 @@
   opacity: 1;
 }
 .inputGroup input:checked ~ label:after {
-  background-color: #54E0C7;
-  border-color: #54E0C7;
+  background-color: mat-color($accent);
+  border-color: mat-color($accent);
 }
 .inputGroup input {
   width: 32px;
