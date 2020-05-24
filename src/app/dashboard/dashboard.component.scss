@@ -22,5 +22,14 @@
   font-size: 3.2rem;
 }
 
+.middletextcolor{
+  color: gray;
+  opacity: 0.9;
+}
+
+.middletextcolor:hover{
+  color: mat-color($primary);
+  opacity: 0.9;
+}
 .gridbackground {
 }
