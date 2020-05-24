@@ -69,17 +69,17 @@
 
 /* The navigation links inside the overlay */
 .overlay a {
-  padding: 0.2rem;
+  padding: 0.3rem;
   text-decoration: none;
-  font-size: 1.5rem;
-  color: mat-color($accent,50);
+  font-size: 1.7rem;
+  color: mat-color($accent,100);
   display: block; /* Display block instead of inline */
   transition: 0.3s; /* Transition effects on hover (color) */
 }
 
 /* When you mouse over the navigation links, change their color */
 .overlay a:hover, .overlay a:focus {
-  color: var(mat-color($primary,contrast-500),white);
+  color: mat-color($primary);
 }
 
 /* Position the close button (top right corner) */
