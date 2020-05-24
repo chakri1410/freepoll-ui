@@ -13,24 +13,48 @@ export class AppComponent implements OnDestroy {
   title = 'freepoll-ui';
 
   fillerNav: NavigationModel[];
+  subMenu: NavigationModel[];
   mobileQuery: MediaQueryList;
   public displayProgressSpinner = false;
   private mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
-              navigationMenuService: NavigationMenuService,
-              overlayService: OverlayService) {
+    navigationMenuService: NavigationMenuService,
+    overlayService: OverlayService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this.mobileQueryListener);
     this.fillerNav = navigationMenuService.get();
-
-    overlayService.progressBarVisibility.subscribe((data)=>{
+    this.subMenu = this.fillerNav[0].children;
+    overlayService.progressBarVisibility.subscribe((data) => {
       this.displayProgressSpinner = data;
     });
+
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this.mobileQueryListener);
+  }
+
+  public showNav = false;
+  toogleNav() {
+    this.showNav = !this.showNav;
+  }
+
+  /* Close when someone clicks on the "x" symbol inside the overlay */
+  closeNav() {
+    this.showNav = false;
+  }
+
+  hoverSubMenu(index) {
+    this.subMenu =  this.fillerNav[index].children;
+  }
+  showSubMenu(index) {
+    if (this.fillerNav[index].children.length === 0) {
+      this.closeNav();
+    }
+    else {
+      this.subMenu =  this.fillerNav[index].children;
+    }
   }
 }

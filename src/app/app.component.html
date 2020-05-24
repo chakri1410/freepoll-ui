@@ -1,23 +1,38 @@
-<div class="freepoll-container" [class.freepoll-is-mobile]="mobileQuery.matches">
+<div class="freepoll-container">
   <mat-toolbar color="primary" class="freepoll-toolbar">
-    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <button mat-icon-button (click)="toogleNav()">
+      <mat-icon>menu</mat-icon>
+    </button>
     <h1 class="freepoll-app-name"><button routerLink="." mat-button>FreePoll</button></h1>
   </mat-toolbar>
 
-  <mat-sidenav-container class="freepoll-sidenav-container"
-                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [style.width.vw]="mobileQuery.matches ? 40 : 15">
-      <mat-nav-list>
-        <a mat-list-item *ngFor="let nav of fillerNav" routerLink="{{nav.url}}">{{nav.name}}</a>
-      </mat-nav-list>
-    </mat-sidenav>
+  <div id="myNav" [style.width]="showNav? '100%': '0%'" class="freepoll-sidenav-container overlay">
 
-    <mat-sidenav-content style="padding-left: 20px;padding-top: 20px ;">
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+    <div class="overlay-content d-flex justify-content-center">
+      <div class="col-sm-3 col-md-3">
+      <ul class="menuul">
+        <li *ngFor="let eachmenu of fillerNav;let i = index;">
+          <a [routerLink]="eachmenu.url" (mouseenter)="hoverSubMenu(i)"
+            (click)="showSubMenu(i)">{{eachmenu.name}} <mat-hint *ngIf="eachmenu.children.length > 0"> ></mat-hint></a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-3 col-md-3">
+      <ul class="menuul">
+        <li *ngFor="let eachmenu of subMenu;let i = index;">
+          <a [routerLink]="eachmenu.url"
+            (click)="closeNav()">{{eachmenu.name}}</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+
+  </div>
+  <div class="mainrouter">
+    <router-outlet></router-outlet>
+  </div>
 </div>
-<app-footer></app-footer>
+<app-footer style="display: none;"></app-footer>
 <app-progress-spinner [displayProgressSpinner]="displayProgressSpinner">
 </app-progress-spinner>
