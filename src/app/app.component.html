@@ -14,7 +14,7 @@
       <ul class="menuul">
         <li *ngFor="let eachmenu of fillerNav;let i = index;">
           <a [routerLink]="eachmenu.url" (mouseenter)="hoverSubMenu(i)"
-            (click)="showSubMenu(i)">{{eachmenu.name}} <mat-hint style="color:gray" *ngIf="eachmenu.children.length > 0"> ></mat-hint></a>
+            (click)="showSubMenu(i)">{{eachmenu.name}} <mat-hint *ngIf="eachmenu.children.length > 0"> ></mat-hint></a>
         </li>
       </ul>
     </div>
