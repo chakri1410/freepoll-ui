@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { PollService } from '../services/poll/poll.service';
 import { ActivatedRoute } from '@angular/router';
-import { PollResult } from '../models/poll';
+import { PollResult, PollOptionVote, GraphResult } from '../models/poll';
 import { OverlayService } from '../overlay/overlay.module';
 import { MatSnackBar } from '@angular/material';
 
@@ -15,10 +15,10 @@ export class ResultPollComponent implements OnInit {
   screenHeight: number;
   screenWidth: number;
   title = '';
-  type = 'PieChart';
+  type = 'BarChart';
   data = [];
   responseData: PollResult;
-  columnNames = ['Question', 'Option'];
+  columnNames = ['Question', 'Options', { role: 'tooltip' }];
   options = {
     chartArea: 'left',
     colors: ['#4f3961', '#ea728c', '#fc9d9d', '#f3d4d4', '#ffbd69', '#fe346e', '#b21f66'],
@@ -58,7 +58,7 @@ export class ResultPollComponent implements OnInit {
         },
         error => {
           this._overlay.hide();
-          this._snackBar.open('OOPS !!! You got wrong poll details','Dismiss');
+          this._snackBar.open('OOPS !!! You got wrong poll details', 'Dismiss');
         });
     });
   }
@@ -70,11 +70,17 @@ export class ResultPollComponent implements OnInit {
     this.title = result.question;
     this.data = [];
 
+    const max = result.options.reduce(this.getTotal);
+
     result.options.forEach(element => {
-      this.data.push([element.label, element.count]);
+      let percent = ((element.count) / max.count) * 100;
+      this.data.push([element.label, element.count, percent.toFixed(2) + '%']);
     });
 
-    this.columnNames = ['Question', 'Option'];
+  }
+
+  getTotal(previousArray: GraphResult, nextArray: GraphResult) {
+    return { count : (previousArray.count + nextArray.count)};
   }
 
   @HostListener('window:resize', ['$event'])
