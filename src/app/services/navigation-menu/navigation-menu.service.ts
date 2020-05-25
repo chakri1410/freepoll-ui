@@ -8,11 +8,18 @@ export class NavigationMenuService {
 private navigationMenuItems: NavigationModel[]
 constructor() {
   this.navigationMenuItems = [
-    {name: 'Home', url: '.'},
-    // {name: 'Dashboard', url: 'dashboard'},
-    {name: 'New Poll', url: 'poll/new'},
-    // {name: 'New Survey', url: 'survey/new'},
-    {name: 'Status', url: 'status'}];
+
+    {name: 'Home', url: '.', children:[]},
+    {name: 'Poll', url: '#', children :[
+      {name: 'Create', url: 'poll/new', children: []},
+      {name: 'Vote / Results', url: 'poll/search', children: []},
+    ]},
+    {name: 'Status', url: 'status', children: []}];
+    // {name: 'Home', url: '.'},
+    // // {name: 'Dashboard', url: 'dashboard'},
+    // {name: 'New Poll', url: 'poll/new'},
+    // // {name: 'New Survey', url: 'survey/new'},
+    // {name: 'Status', url: 'status'}];
 }
 
 get() : NavigationModel[] {

@@ -124,7 +124,7 @@ export class CreatePollComponent {
 
   // Add New Option
   addNewOption() {
-    const nfg = new FormControl(this.newoptionvalue, [Validators.required, Validators.minLength(3)]);
+    const nfg = new FormControl(this.newoptionvalue, [Validators.required, Validators.minLength(2)]);
     this.newoptionvalue = '';
     this.options.push(nfg);
   }

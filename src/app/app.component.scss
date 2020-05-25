@@ -1,3 +1,5 @@
+@import '../styles.scss';
+
 .freepoll-container {
   display: flex;
   flex-direction: column;
@@ -12,6 +14,11 @@
   position: fixed;
   /* Make sure the toolbar will stay on top of the content as it scrolls past. */
   z-index: 2;
+}
+
+.freepoll-toolbar{
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .freepoll-app-name {
@@ -32,4 +39,73 @@
   /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
      `<body>` to be our scrolling element for mobile layouts. */
   flex: 1 0 auto;
+}
+
+
+/* The Overlay (background) */
+.overlay {
+  /* Height & width depends on how you want to reveal the overlay (see JS below) */
+  height: 100%;
+  width: 0;
+  position: fixed; /* Stay in place */
+  z-index: 4; /* Sit on top */
+  left: 0;
+  top: 0;
+  //background-color: rgb(0,0,0); /* Black fallback color */
+  //background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
+  background-color: mat-color($accent,500);
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+/* Position the content inside the overlay */
+.overlay-content {
+  position: relative;
+  top: 25%; /* 25% from the top */
+  width: 100%; /* 100% width */
+  text-align: center; /* Centered text/links */
+  margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+/* The navigation links inside the overlay */
+.overlay a {
+  padding: 0.3rem;
+  text-decoration: none;
+  font-size: 1.7rem;
+  color: mat-color($accent,100);
+  display: block; /* Display block instead of inline */
+  transition: 0.3s; /* Transition effects on hover (color) */
+}
+
+/* When you mouse over the navigation links, change their color */
+.overlay a:hover, .overlay a:focus {
+  color: mat-color($primary);
+}
+
+/* Position the close button (top right corner) */
+.overlay .closebtn {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  font-size: 60px;
+}
+
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 0;
+    left: 20px;
+  }
+}
+
+.mainrouter{
+  background-color: white!important;
+  padding-top:40px;
+}
+
+.menuul{
+  list-style: none;
+  text-align: left;
 }

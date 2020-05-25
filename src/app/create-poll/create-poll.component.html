@@ -5,6 +5,7 @@
       <mat-form-field appearance="fill">
         <mat-label>What's your question?</mat-label>
         <textarea matInput formControlName="question"></textarea>
+        <mat-hint>Question should be minimum 10 characters</mat-hint>
       </mat-form-field>
     </p>
 
@@ -26,7 +27,7 @@
         <input matInput id="newOption" [(ngModel)]="newoptionvalue" [ngModelOptions]="{standalone: true}"
           placeholder="Type option and click on plus">
         <mat-error *ngIf="newoptionvalue == ''">Cannot be empty</mat-error>
-        <button matSuffix type="button" mat-mini-fab color="accent" [disabled]="newoptionvalue == '' || newoptionvalue.length < 3" aria-label="Add"
+        <button matSuffix type="button" mat-mini-fab color="accent" [disabled]="newoptionvalue == '' || newoptionvalue.length < 2" aria-label="Add"
           (click)="addNewOption()">
           <mat-icon>add</mat-icon>
         </button>

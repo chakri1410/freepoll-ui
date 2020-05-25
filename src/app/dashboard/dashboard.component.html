@@ -1,31 +1,20 @@
-<mat-grid-list cols="6" rowHeight="100px">
-  <mat-grid-tile
-      colspan="1"
-      rowspan="5">
-  </mat-grid-tile>
-  <mat-grid-tile
-      colspan="2"
-      rowspan="5">
-      <h2 class="headingcolor">
-        <p>You are just a click away to register and create a poll or survey.</p>
-        <button mat-raised-button color="primary">Get Started</button>
-      </h2>
-  </mat-grid-tile>
-  <mat-grid-tile
-    colspan="2"
-    rowspan="5">
-    <span class="material-icons group-icon">
-      group
-    </span>
-    <span class="material-icons poll-icon">
-      poll
-    </span>
-    <span class="material-icons share-icon">
-      share
+
+  <div class="d-flex justify-content-center">
+    <div class="col-sm-8 col-md-8">
+        <h2 class="headingcolor">
+          <p>You are just a click away to create a <span class="middletextcolor">Poll</span> or  <span class="middletextcolor">Survey</span> and view results in realtime.</p>
+          <button mat-raised-button color="primary" routerLink="poll/new">Get Started</button>
+        </h2>
+      </div>
+    <div class="col-sm-3 col-md-3" style="display: none;">
+      <span class="material-icons group-icon">
+        group
       </span>
-  </mat-grid-tile>
-  <mat-grid-tile
-      colspan="1"
-      rowspan="5">
-  </mat-grid-tile>
-</mat-grid-list>
+      <span class="material-icons poll-icon">
+        poll
+      </span>
+      <span class="material-icons share-icon">
+        share
+        </span>
+      </div>
+    </div>
